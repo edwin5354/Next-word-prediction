@@ -29,7 +29,7 @@ with open('./tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
 
 # Open model
-lstm_model = load_model('./next_word_predictor.h5")
+lstm_model = load_model('./next_word_predictor.h5')
 
 if st.button('Predict'):
     generated_text = seed_text
