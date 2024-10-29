@@ -13,7 +13,7 @@ st.write('In this LSTM model, a tokenizer is initialized and trained on the text
 st.write('The variable X contains the padded input sequences, while y holds the one-hot encoded labels for the next word. A Sequential model is built with an embedding layer, three LSTM layers, batch normalization, and a final dense layer with a softmax activation for multi-class predictions. The model is compiled using categorical crossentropy loss and optimized with the Adam algorithm.')
 st.write("During training, the model is trained for 50 epochs, monitoring both training and validation accuracy. During training, the validation accuracy surpasses 80%. After completing the training, the model's performance is logged in a CSV file, and both the trained model and tokenizer are saved to disk for future reference.")
 
-model_df = pd.read_csv(r'C:\Users\Edwin\Python\bootcamp\Projects\lstm2\model_performance.csv')
+model_df = pd.read_csv('./model_performance.csv')
 model_df['epochs'] = model_df.index + 1
 
 st.line_chart(model_df, x = 'epochs', y = ['Train Accuracy', 'Test Accuracy'],
@@ -26,11 +26,11 @@ st.write("Enter the text you want and select the number of words to predict. Enj
 seed_text = st.text_input("Enter text here:")
 next_words = st.number_input("Number of words to predict:", min_value = 1, max_value = 30, value = 5)
 
-with open(r'C:\Users\Edwin\Python\bootcamp\Projects\lstm2\tokenizer.pickle', 'rb') as handle:
+with open('./tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
 
 # Open model
-lstm_model = load_model(r"C:\Users\Edwin\Python\bootcamp\Projects\lstm2\next_word_predictor.h5")
+lstm_model = load_model('./next_word_predictor.h5")
 
 if st.button('Predict'):
     generated_text = seed_text
